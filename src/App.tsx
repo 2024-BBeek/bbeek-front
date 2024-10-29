@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { OnBoardPage } from '@/pages';
+import { LoginPage, OnBoardPage } from '@/pages';
 
 const Container = styled.div`
   width: 600px;
@@ -18,6 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<></>} />
+          <Route path='/login' element={<LoginPage />} />
           <Route path='/onboard' element={<OnBoardPage />} />
         </Routes>
       </BrowserRouter>
