@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 3.13rem;
+  padding: 3.13rem 0rem;
 `;
 
 export const GraphWrapper = styled.div`
