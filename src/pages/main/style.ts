@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
-  padding: 1.25rem 0;
+  padding: 4.25rem 0;
 `;
 
 export const MyBox = styled.div`

@@ -3,7 +3,7 @@ import * as S from './style';
 import { camera, profile } from '@/assets';
 
 const cameraUrl = '/camera';
-const mypageUrl = '/mypage';
+const mypageUrl = '/';
 
 const Header = () => {
   return (
