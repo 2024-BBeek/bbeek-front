@@ -3,7 +3,7 @@ import * as S from './style';
 import { camera, profile } from '@/assets';
 
 const cameraUrl = '/camera';
-const mypageUrl = '/';
+const mypageUrl = '/onboard';
 
 const Header = () => {
   const { pathname } = useLocation();
