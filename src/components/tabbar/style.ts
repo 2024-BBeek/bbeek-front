@@ -8,6 +8,9 @@ export const Container = styled.div`
   width: 100%;
   height: 3.75rem;
   border-top: solid 1px #bdbdbd;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
 `;
 
 export const IconWrapper = styled.div`
