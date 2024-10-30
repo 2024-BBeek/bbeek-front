@@ -3,6 +3,7 @@ import * as S from './style';
 import { closeEye, openEye } from '@/assets';
 import { selectIcon } from '@/assets';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const allergyList = [
   '갑각류',
@@ -60,6 +61,8 @@ const SigninPage = () => {
   const [heightValue, setHeightValue] = useState<string>('');
   const [weightValue, setWeightValue] = useState<string>('');
 
+  const navigate = useNavigate();
+
   const isStep1 = step === 1;
 
   const handleSigninButtonClick = async () => {
@@ -76,6 +79,8 @@ const SigninPage = () => {
         allergy: allergyValue,
         halal: halalValue,
       });
+
+      navigate('/login');
     } catch {}
   };
 
