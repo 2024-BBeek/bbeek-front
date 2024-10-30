@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {
   LoginPage,
   OnBoardPage,
-  FoodProfilingPage,
   CameraPage,
   SigninPage,
   MainPage,
@@ -28,7 +27,6 @@ const App = () => {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signin' element={<SigninPage />} />
           <Route path='/onboard' element={<OnBoardPage />} />
-          <Route path='/foodProfiling' element={<FoodProfilingPage />} />
           <Route path='/camera' element={<CameraPage />} />
         </Routes>
       </BrowserRouter>
