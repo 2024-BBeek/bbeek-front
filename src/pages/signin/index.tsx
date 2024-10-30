@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as S from './style';
 import { closeEye, openEye } from '@/assets';
 import { selectIcon } from '@/assets';
+import axios from 'axios';
 
 const allergyList = [
   '갑각류',
@@ -29,6 +30,16 @@ const foodStyleList = [
   '플렉시테리언',
 ] as const;
 
+const halalList = [
+  '토끼고기',
+  '돼지고기',
+  '소고기',
+  '양고기',
+  '말고기',
+  '술(대추야자술 제외)',
+  '에너지 드링크',
+];
+
 const sexList = ['남자', '여자'] as const;
 
 const SigninPage = () => {
@@ -39,7 +50,9 @@ const SigninPage = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [allergyValue, setAllergyValue] = useState<string[]>([]);
   const [isAllergySelect, setIsAllergySelect] = useState<boolean>(false);
-  const [foodStyleyValue, setFoodStyleValue] = useState<string[]>([]);
+  const [halalValue, setHalalValue] = useState<string[]>([]);
+  const [isHalalSelect, setIsHalalSelect] = useState<boolean>(false);
+  const [foodStyleyValue, setFoodStyleValue] = useState<string>('');
   const [isFoodStyleSelect, setIsFoodStyleSelect] = useState<boolean>(false);
   const [sexValue, setSexValue] = useState<string>('');
   const [isSexSelect, setIsSexSelect] = useState<boolean>(false);
@@ -48,6 +61,23 @@ const SigninPage = () => {
   const [weightValue, setWeightValue] = useState<string>('');
 
   const isStep1 = step === 1;
+
+  const handleSigninButtonClick = async () => {
+    try {
+      await axios.post('http://192.168.0.84:8081/join', {
+        userId: idValue,
+        password: passwordValue,
+        username: nameValue,
+        vegetarianType: foodStyleyValue,
+        age: Number(ageValue),
+        gender: sexValue,
+        height: Number(heightValue),
+        weight: Number(weightValue),
+        allergy: allergyValue,
+        halal: halalValue,
+      });
+    } catch {}
+  };
 
   return (
     <S.Container>
@@ -137,7 +167,7 @@ const SigninPage = () => {
             <S.SelectBox>
               <S.SelectWrapper>
                 <S.Select
-                  placeholder='선호하는 음식 스타일을 선택해주세요'
+                  placeholder='비건 종류에 대해 선택해주세요'
                   value={JSON.stringify(foodStyleyValue)
                     .replaceAll(/[["\]]/g, '')
                     .replaceAll(',', ', ')}
@@ -151,20 +181,47 @@ const SigninPage = () => {
                     <S.SelectOption
                       isSeleted={foodStyleyValue.includes(foodStyle)}
                       onClick={() => {
-                        if (foodStyleyValue.includes(foodStyle)) {
-                          const filteredList = foodStyleyValue.filter(
-                            (currentFoodStyle) => currentFoodStyle !== foodStyle
-                          );
-
-                          setFoodStyleValue(filteredList);
-                        } else {
-                          setFoodStyleValue((prev) => [...prev, foodStyle]);
-                        }
-
+                        setFoodStyleValue(foodStyle);
                         setIsFoodStyleSelect(false);
                       }}
                     >
                       {foodStyle}
+                    </S.SelectOption>
+                  ))}
+                </S.SelectDropDown>
+              )}
+            </S.SelectBox>
+            <S.SelectBox>
+              <S.SelectWrapper>
+                <S.Select
+                  placeholder='할랄 종류에 대해 선택해주세요'
+                  value={JSON.stringify(halalValue)
+                    .replaceAll(/[["\]]/g, '')
+                    .replaceAll(',', ', ')}
+                  onClick={() => setIsHalalSelect((prev) => !prev)}
+                />
+                <S.SelectIcon src={selectIcon} />
+              </S.SelectWrapper>
+              {isHalalSelect && (
+                <S.SelectDropDown>
+                  {halalList.map((halal) => (
+                    <S.SelectOption
+                      isSeleted={halalValue.includes(halal)}
+                      onClick={() => {
+                        if (halalValue.includes(halal)) {
+                          const filteredList = halalValue.filter(
+                            (currentHalal) => currentHalal !== halal
+                          );
+
+                          setHalalValue(filteredList);
+                        } else {
+                          setHalalValue((prev) => [...prev, halal]);
+                        }
+
+                        setIsHalalSelect(false);
+                      }}
+                    >
+                      {halal}
                     </S.SelectOption>
                   ))}
                 </S.SelectDropDown>
@@ -229,7 +286,9 @@ const SigninPage = () => {
               </S.InputWrapper>
             </S.InputSection>
           </S.InputBox>
-          <S.SignInButton variant='contained'>회원가입</S.SignInButton>
+          <S.SignInButton variant='contained' onClick={handleSigninButtonClick}>
+            회원가입
+          </S.SignInButton>
         </>
       )}
     </S.Container>
