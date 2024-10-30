@@ -32,7 +32,7 @@ const FoodProfilingPage = () => {
     { menu: '하', percent: 6 },
   ];
 
-  const handleClick = (event: ChartEvent, elements: ActiveElement[]) => {
+  const handleClick = (_: ChartEvent, elements: ActiveElement[]) => {
     if (elements.length > 0) {
       const clickedIndex = elements[0].index;
       setSelectedIndex(clickedIndex);
