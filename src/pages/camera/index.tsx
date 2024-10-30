@@ -15,28 +15,32 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
 };
 
 const CameraPage: React.FC = () => {
-  const progressValues = [65, 40, 120, 48, 30, 10, 15, 37];
   const webcamRef = useRef<Webcam>(null);
   const [step, setStep] = useState<number>(1);
   const [type, setType] = useState<boolean>(true);
+  const [response, setResponse] = useState<any>();
 
   const handleShotButtonClick = async () => {
     if (webcamRef.current) {
       const imageUrl = webcamRef.current.getScreenshot();
+      try {
+        const response = await axiosInstance.post('/picture', {
+          img: imageUrl?.split(',')[1],
+        });
 
-      axiosInstance.post('/picture', {
-        img: imageUrl?.split(',')[1],
-      });
+        setResponse(response.data);
 
-      setStep(2);
+        setStep(2);
+      } catch {}
     }
   };
 
   const handleBarcodeScanned = async (barcode: string) => {
-    const response = await axiosInstance.get(`/barcodes/${barcode}`);
+    try {
+      const response = await axiosInstance.get(`/barcodes/${barcode}`);
 
-    setStep(2);
-    console.log(response);
+      setResponse(response.data);
+    } catch {}
   };
 
   return (
@@ -47,10 +51,11 @@ const CameraPage: React.FC = () => {
           <S.ScannerWrapper>
             {type ? (
               <BarcodeScannerComponent
-                onUpdate={(_, result) => {
+                onUpdate={async (_, result) => {
                   if (!result?.getText()) return;
 
-                  handleBarcodeScanned(result?.getText());
+                  await handleBarcodeScanned('5000159559348');
+                  setStep(2);
                 }}
               />
             ) : (
@@ -71,24 +76,71 @@ const CameraPage: React.FC = () => {
 
         {step === 2 && (
           <>
-            <S.Title>{'제품 이름'}</S.Title>
-            <S.ProductImg src='' />
+            <S.Title>{response.productDto.productName}</S.Title>
+            <S.ProductImg src={response.productDto.productImg} />
             <S.FoodInfoBox>
               <S.AllergyBox>
-                {['hihi', 'fdasfd', 'fds'].map((_allergy) => (
-                  <AllergyDialog type='notice' />
+                {response.allergy.map((allergy: string) => (
+                  <AllergyDialog type='notice' allergy={allergy} />
                 ))}
               </S.AllergyBox>
               <S.ProgressBarWrapper>
-                {progressValues.map((progress, index) => (
-                  <S.Wrapper>
-                    <S.ProgressBarText>
-                      <S.Name>단백질</S.Name>
-                      <S.Percent>65%</S.Percent>
-                    </S.ProgressBarText>
-                    <ProgressBar key={index} progress={progress} />
-                  </S.Wrapper>
-                ))}
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>단백질</S.Name>
+                    <S.Percent>{response.productDto.protein}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.protein} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>지방</S.Name>
+                    <S.Percent>{response.productDto.province}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.province} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>탄수화물</S.Name>
+                    <S.Percent>{response.productDto.carbohydrate}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.carbohydrate} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>당류</S.Name>
+                    <S.Percent>{response.productDto.sugar}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.sugar} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>나트륨</S.Name>
+                    <S.Percent>{response.productDto.sodium}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.sodium} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>콜레스테롤</S.Name>
+                    <S.Percent>{response.productDto.cholesterol}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.cholesterol} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>포화지방</S.Name>
+                    <S.Percent>{response.productDto.pfat}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.pfat} />
+                </S.Wrapper>
+                <S.Wrapper>
+                  <S.ProgressBarText>
+                    <S.Name>트렌스지방</S.Name>
+                    <S.Percent>{response.productDto.tfat}%</S.Percent>
+                  </S.ProgressBarText>
+                  <ProgressBar progress={response.productDto.tfat} />
+                </S.Wrapper>
               </S.ProgressBarWrapper>
             </S.FoodInfoBox>
           </>
