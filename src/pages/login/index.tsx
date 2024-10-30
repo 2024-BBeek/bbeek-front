@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import * as S from './style';
+import axios from 'axios';
 
 import { closeEye, openEye } from '@/assets/images';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [idValue, setIdValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [isShow, setIsShow] = useState<boolean>(false);
 
-  const handleLoginButtonClick = () => {
-    console.log(idValue);
-    console.log(passwordValue);
+  const navigate = useNavigate();
+
+  const handleLoginButtonClick = async () => {
+    try {
+      await axios.post('http://3.38.61.26/login', {
+        userId: idValue,
+        password: passwordValue,
+      });
+      navigate('/');
+    } catch (error) {}
   };
 
   return (
