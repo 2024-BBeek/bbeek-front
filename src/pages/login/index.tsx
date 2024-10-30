@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as S from './style';
-import axios from 'axios';
 
 import { closeEye, openEye } from '@/assets/images';
 import { useNavigate } from 'react-router-dom';
