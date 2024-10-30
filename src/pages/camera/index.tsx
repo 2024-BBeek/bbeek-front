@@ -1,9 +1,10 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import * as S from './style';
 import BarcodeScannerComponent from 'react-qr-barcode-scanner';
 import Webcam from 'react-webcam';
 import { AllergyDialog, Header } from '@/components';
 import { camera1, barcode } from '@/assets';
+import { axiosInstance } from '@/apis';
 
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -18,22 +19,25 @@ const CameraPage: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
   const [step, setStep] = useState<number>(1);
   const [type, setType] = useState<boolean>(true);
-  const [photoUrl, setPhotoUrl] = useState<string>('');
 
-  console.log(photoUrl);
-
-  const getInfoByBarcode = (barcode: string) => {
-    console.log(barcode);
-    setStep(2);
-  };
-
-  const handleShotButtonClick = useCallback(() => {
+  const handleShotButtonClick = async () => {
     if (webcamRef.current) {
       const imageUrl = webcamRef.current.getScreenshot();
-      setPhotoUrl(imageUrl!);
+
+      axiosInstance.post('/picture', {
+        img: imageUrl?.split(',')[1],
+      });
+
       setStep(2);
     }
-  }, [webcamRef]);
+  };
+
+  const handleBarcodeScanned = async (barcode: string) => {
+    const response = await axiosInstance.get(`/barcodes/${barcode}`);
+
+    setStep(2);
+    console.log(response);
+  };
 
   return (
     <>
@@ -45,7 +49,8 @@ const CameraPage: React.FC = () => {
               <BarcodeScannerComponent
                 onUpdate={(_, result) => {
                   if (!result?.getText()) return;
-                  getInfoByBarcode(result?.getText());
+
+                  handleBarcodeScanned(result?.getText());
                 }}
               />
             ) : (

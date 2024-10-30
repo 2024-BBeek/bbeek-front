@@ -2,8 +2,8 @@ import { useState } from 'react';
 import * as S from './style';
 import { closeEye, openEye } from '@/assets';
 import { selectIcon } from '@/assets';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { axiosInstance } from '@/apis';
 
 const allergyList = [
   '갑각류',
@@ -67,7 +67,7 @@ const SigninPage = () => {
 
   const handleSigninButtonClick = async () => {
     try {
-      await axios.post('http://3.38.61.26/join', {
+      await axiosInstance.post('/join', {
         userId: idValue,
         password: passwordValue,
         username: nameValue,

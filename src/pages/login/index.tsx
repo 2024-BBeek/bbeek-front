@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { closeEye, openEye } from '@/assets/images';
 import { useNavigate } from 'react-router-dom';
+import { axiosInstance } from '@/apis';
 
 const LoginPage = () => {
   const [idValue, setIdValue] = useState<string>('');
@@ -14,7 +15,7 @@ const LoginPage = () => {
 
   const handleLoginButtonClick = async () => {
     try {
-      await axios.post('http://3.38.61.26/login', {
+      await axiosInstance.post('/login', {
         userId: idValue,
         password: passwordValue,
       });
