@@ -79,15 +79,28 @@ const CameraPage: React.FC = () => {
 
         {step === 2 && (
           <>
-            <S.Title>{response.productDto.productName}</S.Title>
-            <S.ProductImg src={response.productDto.productImg} />
+            <S.Title>
+              {response?.productDto?.productName
+                ? response.productDto.productName
+                : '순두부찌개'}
+            </S.Title>
+            <S.ProductImg
+              src={
+                response?.productDto?.productImg
+                  ? response.productDto.productImg
+                  : 'https://recipe1.ezmember.co.kr/cache/recipe/2019/03/01/cbdcad39283af740afd0e08f97849c7c1.jpg'
+              }
+            />
             <S.FoodInfoBox>
               <S.AllergyBox>
-                {response.allergy.map((allergy: string) => (
+                {response?.allergy?.map((allergy: string) => (
+                  <AllergyDialog type='notice' allergy={allergy} />
+                ))}
+                {response?.warring?.map((allergy: string) => (
                   <AllergyDialog type='notice' allergy={allergy} />
                 ))}
               </S.AllergyBox>
-              {response.productDto.protein && (
+              {response?.productDto?.protein && (
                 <S.ProgressBarWrapper>
                   <S.Wrapper>
                     <S.ProgressBarText>
