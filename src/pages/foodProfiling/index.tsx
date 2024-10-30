@@ -80,34 +80,36 @@ const FoodProfilingPage = () => {
   };
 
   return (
-    <S.Container>
-      <S.GraphWrapper>
-        <Doughnut data={Data} options={Options}></Doughnut>
-      </S.GraphWrapper>
-      <S.RecommendFoodWrapper>
-        <S.RecommendFood>
-          <S.RecommendFoodBox>
-            <S.Title>📌 비빔밥</S.Title>
-            <S.Text>
-              밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
-            </S.Text>
-          </S.RecommendFoodBox>
-          <S.RecommendFoodBox>
-            <S.Title>📌 비빔밥</S.Title>
-            <S.Text>
-              밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
-            </S.Text>
-          </S.RecommendFoodBox>
-          <S.RecommendFoodBox>
-            <S.Title>📌 비빔밥</S.Title>
-            <S.Text>
-              밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
-            </S.Text>
-          </S.RecommendFoodBox>
-        </S.RecommendFood>
-      </S.RecommendFoodWrapper>
+    <>
+      <S.Container>
+        <S.GraphWrapper>
+          <Doughnut data={Data} options={Options}></Doughnut>
+        </S.GraphWrapper>
+        <S.RecommendFoodWrapper>
+          <S.RecommendFood>
+            <S.RecommendFoodBox>
+              <S.Title>📌 비빔밥</S.Title>
+              <S.Text>
+                밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
+              </S.Text>
+            </S.RecommendFoodBox>
+            <S.RecommendFoodBox>
+              <S.Title>📌 비빔밥</S.Title>
+              <S.Text>
+                밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
+              </S.Text>
+            </S.RecommendFoodBox>
+            <S.RecommendFoodBox>
+              <S.Title>📌 비빔밥</S.Title>
+              <S.Text>
+                밥에 각종 나물을 넣고, 장을 넣어서 비벼먹는 전통 한국 요리.
+              </S.Text>
+            </S.RecommendFoodBox>
+          </S.RecommendFood>
+        </S.RecommendFoodWrapper>
+      </S.Container>
       <Tabbar />
-    </S.Container>
+    </>
   );
 };
 

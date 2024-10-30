@@ -11,6 +11,7 @@ export const Container = styled.div`
   background-color: white;
   position: fixed;
   bottom: 0;
+  left: 0;
 `;
 
 export const IconWrapper = styled.div`
