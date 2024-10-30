@@ -12,6 +12,8 @@ const CameraPage = () => {
   const [type, setType] = useState<boolean>(true);
   const [photoUrl, setPhotoUrl] = useState<string>('');
 
+  console.log(photoUrl);
+
   const getInfoByBarcode = (barcode: string) => {
     console.log(barcode);
     setStep(2);
