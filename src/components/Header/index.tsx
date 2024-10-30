@@ -1,15 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as S from './style';
 import { camera, profile } from '@/assets';
 
 const cameraUrl = '/camera';
-const mypageUrl = '/mypage';
+const mypageUrl = '/';
 
 const Header = () => {
+  const { pathname } = useLocation();
+
   return (
     <S.Wrapper>
       <S.Container>
-        <Link to={cameraUrl}>
+        <Link
+          onClick={() => {
+            if (pathname === cameraUrl) location.reload();
+          }}
+          to={cameraUrl}
+        >
           <S.IconImg src={camera} />
         </Link>
         <Link to={mypageUrl}>
