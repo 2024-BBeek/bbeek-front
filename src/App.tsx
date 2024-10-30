@@ -24,10 +24,10 @@ const App = () => {
     <Container>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<MainPage />} />
+          <Route path='/' element={<OnBoardPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signin' element={<SigninPage />} />
-          <Route path='/onboard' element={<OnBoardPage />} />
+          <Route path='/onboard' element={<MainPage />} />
           <Route path='/camera' element={<CameraPage />} />
           <Route path='/ment' element={<MentPage />} />
         </Routes>
