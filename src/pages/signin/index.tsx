@@ -67,7 +67,7 @@ const SigninPage = () => {
 
   const handleSigninButtonClick = async () => {
     try {
-      await axios.post('http://192.168.0.84:8081/join', {
+      await axios.post('http://3.38.61.26/join', {
         userId: idValue,
         password: passwordValue,
         username: nameValue,
