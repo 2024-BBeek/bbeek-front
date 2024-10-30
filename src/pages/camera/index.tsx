@@ -63,6 +63,9 @@ const CameraPage: React.FC = () => {
                 ref={webcamRef}
                 audio={false}
                 screenshotFormat='image/png'
+                videoConstraints={{
+                  facingMode: 'environment',
+                }}
               />
             )}
             <S.TypeButton onClick={() => setType((prev) => !prev)}>
@@ -84,64 +87,66 @@ const CameraPage: React.FC = () => {
                   <AllergyDialog type='notice' allergy={allergy} />
                 ))}
               </S.AllergyBox>
-              <S.ProgressBarWrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>단백질</S.Name>
-                    <S.Percent>{response.productDto.protein}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.protein} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>지방</S.Name>
-                    <S.Percent>{response.productDto.province}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.province} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>탄수화물</S.Name>
-                    <S.Percent>{response.productDto.carbohydrate}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.carbohydrate} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>당류</S.Name>
-                    <S.Percent>{response.productDto.sugar}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.sugar} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>나트륨</S.Name>
-                    <S.Percent>{response.productDto.sodium}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.sodium} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>콜레스테롤</S.Name>
-                    <S.Percent>{response.productDto.cholesterol}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.cholesterol} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>포화지방</S.Name>
-                    <S.Percent>{response.productDto.pfat}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.pfat} />
-                </S.Wrapper>
-                <S.Wrapper>
-                  <S.ProgressBarText>
-                    <S.Name>트렌스지방</S.Name>
-                    <S.Percent>{response.productDto.tfat}%</S.Percent>
-                  </S.ProgressBarText>
-                  <ProgressBar progress={response.productDto.tfat} />
-                </S.Wrapper>
-              </S.ProgressBarWrapper>
+              {response.productDto.protein && (
+                <S.ProgressBarWrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>단백질</S.Name>
+                      <S.Percent>{response.productDto.protein}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.protein} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>지방</S.Name>
+                      <S.Percent>{response.productDto.province}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.province} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>탄수화물</S.Name>
+                      <S.Percent>{response.productDto.carbohydrate}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.carbohydrate} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>당류</S.Name>
+                      <S.Percent>{response.productDto.sugar}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.sugar} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>나트륨</S.Name>
+                      <S.Percent>{response.productDto.sodium}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.sodium} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>콜레스테롤</S.Name>
+                      <S.Percent>{response.productDto.cholesterol}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.cholesterol} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>포화지방</S.Name>
+                      <S.Percent>{response.productDto.pfat}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.pfat} />
+                  </S.Wrapper>
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>트렌스지방</S.Name>
+                      <S.Percent>{response.productDto.tfat}%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar progress={response.productDto.tfat} />
+                  </S.Wrapper>
+                </S.ProgressBarWrapper>
+              )}
             </S.FoodInfoBox>
           </>
         )}
