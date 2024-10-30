@@ -38,48 +38,6 @@ export const ProductImg = styled.img`
   margin-top: 1.625rem;
 `;
 
-export const AllergyAlert = styled.div<{
-  type: 'warning' | 'notice' | 'empty';
-}>`
-  padding: 1.25rem 2.5rem;
-  background-color: #feebee;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: ${({ type }) =>
-    type === 'warning' ? '#c62828' : type === 'empty' ? '#000000' : '#E65100'};
-  background-color: ${({ type }) =>
-    type === 'warning' ? '#FEEBEE' : type === 'empty' ? '#E0F2F1' : '#FFFDE7'};
-
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: 0.00938rem;
-
-  h1 {
-    color: ${({ type }) =>
-      type === 'warning'
-        ? '#c62828'
-        : type === 'empty'
-        ? '#000000'
-        : '#E65100'};
-  }
-
-  button {
-    color: ${({ type }) =>
-      type === 'warning' ? '#c62828' : type === 'empty' ? '#000' : '#E65100'};
-  }
-`;
-
-export const AllergyHeader = styled.div`
-  font-size: 1.375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.75rem;
-  letter-spacing: 0rem;
-`;
-
 export const AllergyBox = styled.div`
   display: flex;
   flex-direction: column;
