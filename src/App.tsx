@@ -6,6 +6,7 @@ import {
   CameraPage,
   SigninPage,
   MainPage,
+  MentPage,
 } from '@/pages';
 
 const Container = styled.div`
@@ -28,6 +29,7 @@ const App = () => {
           <Route path='/signin' element={<SigninPage />} />
           <Route path='/onboard' element={<OnBoardPage />} />
           <Route path='/camera' element={<CameraPage />} />
+          <Route path='/ment' element={<MentPage />} />
         </Routes>
       </BrowserRouter>
     </Container>
