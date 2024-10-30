@@ -50,7 +50,6 @@ const CameraPage = () => {
             <S.TypeButton onClick={() => setType((prev) => !prev)}>
               <S.TypeImg src={type ? barcode : camera1} />
             </S.TypeButton>
-            <S.CameraButton />
           </S.ScannerWrapper>
         )}
         {!type && step === 1 && (
