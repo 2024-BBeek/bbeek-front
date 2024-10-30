@@ -15,7 +15,7 @@ const AllergyDialog = ({
         ❗{allergy.includes('답변:') ? allergy.split(':')[1] : allergy}
       </S.AllergyHeader>
       이 제품은 {allergy.includes('답변:') ? allergy.split(':')[1] : allergy}
-      알레르기 성분을 포함하고 있습니다.
+      알레르기 성분을 포함할 수 있습니다.
       {type === 'notice' && (
         <S.NoticeButton to={movementUrl}>도움 받기 &gt;</S.NoticeButton>
       )}

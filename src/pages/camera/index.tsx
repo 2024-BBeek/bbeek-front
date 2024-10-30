@@ -94,7 +94,7 @@ const CameraPage: React.FC = () => {
             <S.FoodInfoBox>
               <S.AllergyBox>
                 {response?.allergy?.map((allergy: string) => (
-                  <AllergyDialog type='notice' allergy={allergy} />
+                  <AllergyDialog type='warning' allergy={allergy} />
                 ))}
                 {response?.warring?.map((allergy: string) => (
                   <AllergyDialog type='notice' allergy={allergy} />
