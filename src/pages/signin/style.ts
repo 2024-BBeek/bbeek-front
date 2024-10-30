@@ -127,14 +127,17 @@ export const SelectOption = styled.div<{
   justify-content: center;
   align-items: center;
   border-radius: 0.625rem;
-  min-width: 4rem;
   border-radius: 1rem;
-  height: 1.5rem;
+  height: 2rem;
 
-  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  width: fit-content;
+  height: auto;
+
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 0.75rem;
+  line-height: 1.5rem;
   cursor: pointer;
 `;
 
