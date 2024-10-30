@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { LoginPage, OnBoardPage, FoodProfilingPage, CameraPage, SigninPage, MainPage } from '@/pages';
+import {
+  LoginPage,
+  OnBoardPage,
+  FoodProfilingPage,
+  CameraPage,
+  SigninPage,
+  MainPage,
+} from '@/pages';
 
 const Container = styled.div`
   width: 600px;
