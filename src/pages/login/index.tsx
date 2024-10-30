@@ -18,7 +18,7 @@ const LoginPage = () => {
         userId: idValue,
         password: passwordValue,
       });
-      navigate('/');
+      navigate('/camera');
     } catch (error) {}
   };
 
