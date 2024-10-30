@@ -1,12 +1,20 @@
 import { useCallback, useRef, useState } from 'react';
 import * as S from './style';
-
 import BarcodeScannerComponent from 'react-qr-barcode-scanner';
 import Webcam from 'react-webcam';
 import { AllergyDialog, Header } from '@/components';
 import { camera1, barcode } from '@/assets';
 
-const CameraPage = () => {
+const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
+  return (
+    <S.ProgressBarContainer>
+      <S.ProgressBarFill progress={progress} />
+    </S.ProgressBarContainer>
+  );
+};
+
+const CameraPage: React.FC = () => {
+  const progressValues = [65, 40, 120, 48, 30, 10, 15, 37];
   const webcamRef = useRef<Webcam>(null);
   const [step, setStep] = useState<number>(1);
   const [type, setType] = useState<boolean>(true);
@@ -66,6 +74,17 @@ const CameraPage = () => {
                   <AllergyDialog type='notice' />
                 ))}
               </S.AllergyBox>
+              <S.ProgressBarWrapper>
+                {progressValues.map((progress, index) => (
+                  <S.Wrapper>
+                    <S.ProgressBarText>
+                      <S.Name>단백질</S.Name>
+                      <S.Percent>65%</S.Percent>
+                    </S.ProgressBarText>
+                    <ProgressBar key={index} progress={progress} />
+                  </S.Wrapper>
+                ))}
+              </S.ProgressBarWrapper>
             </S.FoodInfoBox>
           </>
         )}

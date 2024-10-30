@@ -9,6 +9,8 @@ import {
   ActiveElement,
 } from 'chart.js';
 import { useState } from 'react';
+import { bonobono } from '@/assets';
+import { Header } from '@/components';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -80,8 +82,9 @@ const MainPage = () => {
 
   return (
     <S.Container>
+      <Header />
       <S.MyBox>
-        <S.Profile />
+        <S.Profile src={bonobono} />
         <S.Greeting>원은지님, 안녕하세요!</S.Greeting>
         <S.Allergies>
           <S.Allergy>우유</S.Allergy>

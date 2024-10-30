@@ -84,6 +84,49 @@ export const FoodInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.87rem;
   padding: 1.8rem;
   margin-bottom: 1rem;
+`;
+
+export const ProgressBarContainer = styled.div`
+  width: 27.5rem;
+  height: 0.9375rem;
+  background-color: #d9d9d9;
+  border-radius: 0.625rem;
+  position: relative;
+`;
+
+export const ProgressBarFill = styled.div<{ progress: number }>`
+  width: ${(props) => Math.min(props.progress, 100)}%;
+  background-color: #1e88e5;
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 0.625rem;
+`;
+
+export const ProgressBarWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.63rem;
+`;
+
+export const ProgressBarText = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Name = styled.p`
+  font-size: 1rem;
+`;
+
+export const Percent = styled.p`
+  color: #616161;
+  font-size: 1rem;
 `;
