@@ -23,15 +23,17 @@ const LoginPage = () => {
           onChange={(e) => setIdValue(e.target.value)}
           placeholder='아이디를 입력해주세요.'
         />
-        <S.Input
-          value={passwordValue}
-          onChange={(e) => setPasswordValue(e.target.value)}
-          placeholder='비밀번호를 입력해주세요.'
-          type={isShow ? 'text' : 'password'}
-        />
-        <S.EyeButton onClick={() => setIsShow((prev) => !prev)}>
-          <S.EyeImage src={isShow ? openEye : closeEye} />
-        </S.EyeButton>
+        <S.PasswordWrapper>
+          <S.Input
+            value={passwordValue}
+            onChange={(e) => setPasswordValue(e.target.value)}
+            placeholder='비밀번호를 입력해주세요.'
+            type={isShow ? 'text' : 'password'}
+          />
+          <S.EyeButton onClick={() => setIsShow((prev) => !prev)}>
+            <S.EyeImage src={isShow ? openEye : closeEye} />
+          </S.EyeButton>
+        </S.PasswordWrapper>
       </S.InputBox>
       <S.LoginButton variant='contained' onClick={handleLoginButtonClick}>
         로그인

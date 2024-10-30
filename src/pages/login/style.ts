@@ -40,6 +40,10 @@ export const InputBox = styled.div`
   position: relative;
 `;
 
+export const PasswordWrapper = styled.div`
+  position: relative;
+`;
+
 export const Input = styled.input`
   display: flex;
   width: 31.25rem;
@@ -63,11 +67,10 @@ export const LoginButton = styled(Button)`
 export const EyeButton = styled.button`
   position: absolute;
   right: 1rem;
-  top: 5.25rem;
+  top: 50%;
+  transform: translateY(-50%);
   margin: 0;
   padding: 0;
-  width: 1.125rem;
-  height: 0.75rem;
 `;
 
 export const EyeImage = styled.img`
